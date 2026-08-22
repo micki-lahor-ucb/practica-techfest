@@ -32,3 +32,8 @@ Se utiliza en `src/report.js`. Resuelve el problema de alinear y tabular manualm
 
 ## Tarea 6: Operaciones Asíncronas
 * **Explicación:** Node.js es monohilo pero utiliza el Event Loop y las APIs internas del sistema. Operaciones como `setTimeout` o peticiones HTTP se delegan en segundo plano, permitiendo que el hilo principal no quede congelado durante la espera.
+
+## Tarea 8: Validación de Configuración
+* **Prueba con MAX_WORKSHOPS=2:** La aplicación procesa y muestra exactamente 2 talleres.
+* **Prueba con MAX_WORKSHOPS=0:** Al no ser mayor que 0, se activa el fallback y muestra 3 talleres por defecto.
+* **Prueba con MAX_WORKSHOPS=abc:** Al no ser un número válido (`NaN`), aplica la regla y asigna 3 talleres.
