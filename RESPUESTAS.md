@@ -48,3 +48,7 @@ Se utiliza en `src/report.js` para generar una tabla con los datos de los taller
 ## Tarea 4 - Configuración del entorno
 
 Al modificar `EVENT_NAME` y `MAX_WORKSHOPS` en el archivo `.env`, la aplicación muestra el nuevo nombre del evento y solo los primeros `MAX_WORKSHOPS` talleres. Demuestra que la configuracion se puede cambiar sin tocar el codigo fuente si mal no estoy. La logica de negocio y los datos permanecen intactos.
+
+# Respuestas - Tarea 6
+
+La función `synchronizeRegistrations` usa `setTimeout` envuelto en una Promesa. Aunque parece una espera bloqueante, por si `await` solo pausa la ejecución de esa funcion asíncrona, pero no bloquea el event loop de Node.js. y esto miientras se espera, el programa puede atender otros eventos (si que hay otros claro).
