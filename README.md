@@ -31,4 +31,5 @@ npm install
 npm run start
 ```
 
-Durante la práctica se realizarán modificaciones sobre este proyecto.
+
+Durante la practica se realizarán modificaciones sobre este proyecto.
