@@ -5,6 +5,7 @@ import { config } from './config.js';
 import { workshops } from './data.js';
 import { printWorkshopReport } from './report.js';
 import { synchronizeRegistrations } from './services.js';
+import { renderSummary } from './summary.js'; // <- IMPORTAR
 
 console.log(chalk.bold.cyan(`\n${config.appName}`));
 console.log(chalk.gray('----------------------------------------'));
@@ -20,7 +21,7 @@ console.log(chalk.bold('\nSincronizando inscripciones...'));
 
 const synchronized = await synchronizeRegistrations(
   workshops.slice(0, config.maxWorkshops),
-  config.syncDelay
+  config.syncDelay,
 );
 
 console.log(chalk.green('✓ Sincronización completada.'));
@@ -29,3 +30,5 @@ console.log(
     `Talleres procesados: ${synchronized.length}. Los datos fueron simulados para la práctica.`,
   ),
 );
+
+renderSummary(synchronized);
