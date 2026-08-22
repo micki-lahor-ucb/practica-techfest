@@ -1,0 +1,22 @@
+{
+  "name": "tw1-practica-techfest-control",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Proyecto base para el laboratorio de la Semana 2 de Tecnologías Web 1.",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "chalk": "6.0.0",
+    "cli-table3": "0.6.5",
+    "dotenv": "17.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.14",
+    "prettier": "3.9.6"
+  }
+}
