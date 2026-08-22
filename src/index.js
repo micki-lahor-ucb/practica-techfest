@@ -18,8 +18,7 @@ printWorkshopReport(workshops.slice(0, config.maxWorkshops));
 
 console.log(chalk.bold('\nSincronizando inscripciones...'));
 
-const synchronized = await synchronizeRegistrations(workshops);
-
+const synchronized = await synchronizeRegistrations(workshops, config.syncDelay);
 console.log(chalk.green('✓ Sincronización completada.'));
 console.log(
   chalk.gray(
