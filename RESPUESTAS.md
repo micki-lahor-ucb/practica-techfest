@@ -42,3 +42,9 @@
 **¿Donde se utiliza `cli-table3` y que problema resuelve dentro del proyecto?**
 
 Se utiliza en `src/report.js` para generar una tabla con los datos de los talleres. Resuelve el problema de mostrar informacion tabular de forma legible y organizada en la consola.
+
+# Respuestas - Tarea 4
+
+## Tarea 4 - Configuración del entorno
+
+Al modificar `EVENT_NAME` y `MAX_WORKSHOPS` en el archivo `.env`, la aplicación muestra el nuevo nombre del evento y solo los primeros `MAX_WORKSHOPS` talleres. Demuestra que la configuracion se puede cambiar sin tocar el codigo fuente si mal no estoy. La logica de negocio y los datos permanecen intactos.
