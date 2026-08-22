@@ -1084,3 +1084,58 @@ MAX_TALLERES=20
 sin necesidad de modificar la lógica principal del programa.
 
 ## Por lo tanto, este ejercicio demuestra que **separar la configuración del código permite desarrollar aplicaciones más reutilizables, mantenibles y fáciles de adaptar**. La misma aplicación puede utilizar diferentes configuraciones para distintos entornos, como desarrollo, pruebas o producción, sin tener que cambiar su código fuente.
+---
+
+## Respuestas - Tarea 8: Validar la configuración
+
+### Pruebas realizadas para `MAX_WORKSHOPS`
+
+Para comprobar que la configuración funciona correctamente, se realizaron diferentes pruebas utilizando valores válidos e inválidos. El objetivo es verificar que la aplicación acepte los valores correctos y que, cuando reciba un valor incorrecto, utilice automáticamente un valor predeterminado.
+
+**1. Prueba con el valor `2`**
+
+El valor `2` es un número entero mayor que `0`, por lo que cumple con la regla establecida para `MAX_WORKSHOPS`.
+
+**Ejemplo:**
+
+```env
+MAX_WORKSHOPS=2
+```
+
+En este caso, la aplicación acepta la configuración y procesa **exactamente 2 talleres** en el reporte. Esto demuestra que los valores válidos son utilizados correctamente por el programa.
+
+---
+
+**2. Prueba con el valor `0`**
+
+El valor `0` no cumple con la condición establecida, ya que la cantidad máxima de talleres debe ser un número **mayor que 0**.
+
+**Ejemplo:**
+
+```env
+MAX_WORKSHOPS=0
+```
+
+Al detectar que el valor no es válido, la función de validación lo descarta y utiliza automáticamente el valor predeterminado de **3 talleres**. Esto evita que la aplicación funcione con una configuración incorrecta.
+
+---
+
+**3. Prueba con el valor `abc`**
+
+El valor `abc` tampoco es válido porque no representa un número. Al intentar convertirlo a un valor numérico, se obtiene `NaN` (*Not a Number*).
+
+**Ejemplo:**
+
+```env
+MAX_WORKSHOPS=abc
+```
+
+La función de validación detecta que el valor no es numérico y, en lugar de utilizarlo, recurre al valor predeterminado de **3 talleres**.
+
+---
+
+### Conclusión
+
+Estas pruebas demuestran que la aplicación cuenta con una validación adecuada de la configuración. Cuando recibe un valor correcto, como `2`, lo utiliza normalmente; cuando recibe un valor incorrecto, como `0` o `abc`, utiliza un valor predeterminado de `3`.
+
+Esto es importante porque permite que la aplicación sea **más segura y resistente a errores de configuración**, evitando que un dato incorrecto provoque un comportamiento inesperado durante su ejecución.
