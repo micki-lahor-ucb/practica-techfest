@@ -41,3 +41,7 @@ Se utiliza en report.js dentro de la función printWorkshopReport y el problema 
 
 ## Tarea 4. Código vs Configuración
 Este ejercicio demuestra que al modificar EVENT_NAME o MAX_WORKSHOPS en el archivo .env, el comportamiento y las salidas del sistema cambian sin necesidad de alterar la logica del sistema lo que permite que la misma base de código se ejecute en diferentes entornos solo cambiando sus variables de entorno.
+
+## Tarea 6. Convertir el tiempo de sincronización en configuración
+
+Node usa un único hilo junto con el event loop y al usar setTimeout con una Promise, el tiempo de espera no congela el hilo principal y mas bien que se delega a las APIs del sistema, asó el proceso queda libre para atender otras tareas y al terminar el tiempo de SYNC_DELAY, la promesa se resuelve en la cola de tareas sin causar un bloqueo síncrono
