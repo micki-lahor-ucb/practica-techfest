@@ -29,3 +29,6 @@ Se utiliza en `src/report.js`. Resuelve el problema de alinear y tabular manualm
 
 ## Tarea 4: Configuración vs Código
 * **Reflexión:** Modificar `.env` permite alterar la cantidad de elementos o los textos de la app sin reescribir la lógica ni cambiar el código fuente en `src/`. Esto separa los parámetros cambiantes del comportamiento interno del programa.
+
+## Tarea 6: Operaciones Asíncronas
+* **Explicación:** Node.js es monohilo pero utiliza el Event Loop y las APIs internas del sistema. Operaciones como `setTimeout` o peticiones HTTP se delegan en segundo plano, permitiendo que el hilo principal no quede congelado durante la espera.
