@@ -9,6 +9,7 @@ import { synchronizeRegistrations } from './services.js';
 console.log(chalk.bold.cyan(`\n${config.appName}`));
 console.log(chalk.gray('----------------------------------------'));
 console.log(`Evento: ${chalk.yellow(config.eventName)}`);
+console.log(`Estudiante: ${chalk.yellow(config.studentName)}`);
 console.log(`Entorno: ${chalk.yellow(config.environment)}`);
 console.log(`Límite de talleres configurado: ${chalk.yellow(config.maxWorkshops)}`);
 
