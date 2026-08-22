@@ -5,6 +5,7 @@ import { config } from './config.js';
 import { workshops } from './data.js';
 import { printWorkshopReport } from './report.js';
 import { synchronizeRegistrations } from './services.js';
+import { displaySummary } from './summary.js';
 
 console.log(chalk.bold.cyan(`\n${config.appName}`));
 console.log(chalk.gray('----------------------------------------'));
@@ -26,3 +27,5 @@ console.log(
     `Talleres procesados: ${synchronized.length}. Los datos fueron simulados para la práctica.`,
   ),
 );
+
+displaySummary(synchronized);
