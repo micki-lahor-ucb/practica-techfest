@@ -1,4 +1,4 @@
-# Respuestas - Tarea 2
+# Tarea 2. Explorar y comprender el proyecto
 
 - **¿Cuál es el punto de entrada de la aplicación?**  
   El punto de entrada de la aplicacion es index.js porque se ejecuta como start
@@ -26,3 +26,15 @@ services.js: Gestiona las operaciones simuladas y asíncronas de sincronización
 
 - **¿En qué archivo se encuentra la operación asíncrona?**  
   En services.js dento de "synchronizeRegistrations"
+
+## Tarea 3. Investigar las dependencias
+
+| Nombre del paquete | Tipo | Para qué sirve | En qué archivo/script se utiliza | Por qué está en esa categoría |
+|---|---|---|---|---|
+| dotenv | dependencies | Para cargar las variables en el archivo .env al entorno de ejecución process.env | En index.js mediante import dotenv/config y en config.js | Se requiere en producción para leer configuraciones del entorno |
+| chalk | dependencies | Para aplicar estilos, negritas y colores al texto mostrado en la terminal. | En index.js y report.js summary.js | Es parte de la interfaz de consola que ve el usuario final en ejecución. |
+| cli-table3 | dependencies | Para generar y alinear tablas con formato ASCII/Unicode en la consola. | En report.js | Permite construir la interfaz de usuario en terminal. |
+| prettier| devDependencies | Para formater automáticamente el código para mantener un estilo homogeneo | En el archivo de configuración .prettierrc| Solo sirve para mantener la calidad y estilo del código durante el desarrollo, no esta involucrado en produccion. |
+
+### cli-table3:
+Se utiliza en report.js dentro de la función printWorkshopReport y el problema que resuelve es que automatiza el formato para presentar los datos de una forma mas legible evitando formatear los espacios manualmente
