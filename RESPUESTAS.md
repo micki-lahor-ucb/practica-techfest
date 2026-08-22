@@ -26,3 +26,6 @@
 
 ### Uso específico de `cli-table3`:
 Se utiliza en `src/report.js`. Resuelve el problema de alinear y tabular manualmente los objetos de los talleres, mostrándolos en bordes bien dibujados y columnas estructuradas en la terminal.
+
+## Tarea 4: Configuración vs Código
+* **Reflexión:** Modificar `.env` permite alterar la cantidad de elementos o los textos de la app sin reescribir la lógica ni cambiar el código fuente en `src/`. Esto separa los parámetros cambiantes del comportamiento interno del programa.
