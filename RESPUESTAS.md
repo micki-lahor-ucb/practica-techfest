@@ -485,3 +485,581 @@ Variables de entorno     Procesamiento
 ```
 
 Esta estructura también permite comprender una idea fundamental en el desarrollo de software: **no se debe colocar toda la lógica de una aplicación en un solo archivo**, sino dividirla en módulos con responsabilidades claras.
+# Respuestas – Tarea 3: Investigar las dependencias
+
+## Tabla de Dependencias
+
+## Dependencias del proyecto
+
+### 1. chalk
+
+**Tipo:** `dependencies`
+
+**Propósito:**  
+El paquete `chalk` permite agregar colores y diferentes estilos a los mensajes que aparecen en la consola. Por ejemplo, puede utilizarse el color verde para indicar que una operación fue exitosa, rojo para mostrar errores y amarillo para presentar advertencias. Esto facilita que el usuario pueda identificar rápidamente el tipo de mensaje que muestra la aplicación.
+
+**Archivo o script donde se utiliza:**  
+Se utiliza principalmente en `src/index.js` y `src/services.js`.
+
+**Razonamiento de ubicación:**  
+Se encuentra dentro de `dependencies` porque forma parte del funcionamiento de la aplicación y se utiliza durante su ejecución para presentar información al usuario. Por esta razón, es una dependencia necesaria cuando la aplicación se ejecuta.
+
+---
+
+### 2. dotenv
+
+**Tipo:** `dependencies`
+
+**Propósito:**  
+El paquete `dotenv` permite cargar variables de configuración almacenadas en un archivo `.env` y acceder a ellas mediante `process.env`. Esto permite mantener determinadas configuraciones separadas del código fuente y facilita el uso de diferentes configuraciones dependiendo del entorno en el que se ejecute la aplicación.
+
+**Archivo o script donde se utiliza:**  
+Se utiliza en `src/config.js`.
+
+**Razonamiento de ubicación:**  
+Se encuentra dentro de `dependencies` porque la aplicación necesita estas variables de configuración durante su ejecución. Por lo tanto, `dotenv` forma parte de las dependencias necesarias para que el programa pueda funcionar correctamente.
+
+---
+
+### 3. ora
+
+**Tipo:** `dependencies`
+
+**Propósito:**  
+El paquete `ora` permite mostrar indicadores de carga, conocidos como *spinners*, en la terminal mientras se ejecutan operaciones que pueden tardar algunos segundos. De esta manera, el usuario puede saber que la aplicación continúa trabajando y que la operación todavía no ha terminado.
+
+**Archivo o script donde se utiliza:**  
+Se utiliza en `src/index.js` y `src/services.js`.
+
+**Razonamiento de ubicación:**  
+Se encuentra dentro de `dependencies` porque el indicador de carga forma parte de la interacción normal de la aplicación con el usuario y se utiliza durante la ejecución del programa.
+
+---
+
+### 4. cli-table3
+
+**Tipo:** `dependencies`
+
+**Propósito:**  
+El paquete `cli-table3` permite crear tablas organizadas directamente en la terminal, utilizando filas, columnas, bordes y diferentes alineaciones. Esto facilita presentar información como los talleres disponibles, los cupos y los estudiantes inscritos de una manera más clara y ordenada.
+
+**Archivo o script donde se utiliza:**  
+Puede utilizarse en `src/services.js` o `src/index.js`.
+
+**Razonamiento de ubicación:**  
+Se encuentra dentro de `dependencies` porque se utiliza durante la ejecución de la aplicación para presentar información al usuario. No es solamente una herramienta utilizada para desarrollar o mantener el código, sino que forma parte de la interfaz que utiliza la aplicación en la terminal.
+
+---
+
+### 5. nodemon
+
+**Tipo:** `devDependencies`
+
+**Propósito:**  
+El paquete `nodemon` permite reiniciar automáticamente la aplicación cuando detecta cambios en los archivos del proyecto. Esto evita que el programador tenga que detener y volver a ejecutar manualmente el programa después de realizar cada modificación durante el desarrollo.
+
+**Archivo o script donde se utiliza:**  
+Se utiliza mediante el script `"dev"` definido en `package.json`.
+
+**Razonamiento de ubicación:**  
+Se encuentra dentro de `devDependencies` porque es una herramienta utilizada principalmente durante el desarrollo del proyecto. El usuario final no necesita `nodemon` para ejecutar la aplicación, ya que su función principal es facilitar el trabajo del programador mientras desarrolla y prueba el sistema.
+
+---
+
+### 6. prettier
+
+**Tipo:** `devDependencies`
+
+**Propósito:**  
+El paquete `prettier` permite formatear automáticamente el código para mantener una estructura uniforme. Se encarga de aspectos como los espacios, las sangrías, los saltos de línea y el uso de comillas. Esto ayuda a mantener el código limpio, organizado y fácil de leer.
+
+**Archivo o script donde se utiliza:**  
+Se utiliza mediante el script `"format"` definido en `package.json`.
+
+**Razonamiento de ubicación:**  
+Se encuentra dentro de `devDependencies` porque su función principal es ayudar al programador a mantener y organizar el código durante el desarrollo. No es necesario para que la aplicación pueda ejecutarse, por lo que no debe considerarse una dependencia de producción.
+## 1. Análisis de `chalk`
+
+### ¿Para qué sirve?
+
+`chalk` es una biblioteca que permite agregar colores y estilos al texto mostrado en la terminal.
+
+Por ejemplo, podemos mostrar un mensaje de éxito en color verde:
+
+```javascript
+import chalk from "chalk";
+
+console.log(chalk.green("Taller creado correctamente"));
+```
+
+También podemos utilizar otros colores:
+
+```javascript
+console.log(chalk.red("Ocurrió un error"));
+console.log(chalk.yellow("Advertencia: quedan pocos cupos"));
+console.log(chalk.blue("Consultando talleres..."));
+```
+
+Esto permite diferenciar visualmente los diferentes tipos de mensajes.
+
+Por ejemplo:
+
+```text
+✓ Taller creado correctamente
+⚠ Advertencia: quedan pocos cupos
+✗ Ocurrió un error
+```
+
+### ¿Por qué está en `dependencies`?
+
+Porque `chalk` se utiliza durante la ejecución de la aplicación para presentar información al usuario.
+
+La diferencia sería:
+
+```text
+Aplicación ejecutándose
+        ↓
+Necesita mostrar mensajes
+        ↓
+chalk agrega formato y colores
+        ↓
+Usuario observa el resultado
+```
+
+Por eso tiene sentido que pertenezca a `dependencies`.
+
+---
+
+## 2. Análisis de `dotenv`
+
+### ¿Para qué sirve?
+
+`dotenv` permite cargar variables almacenadas en un archivo `.env` y utilizarlas dentro de la aplicación mediante `process.env`.
+
+Por ejemplo, podemos tener un archivo:
+
+```env
+APP_NAME=Sistema de Talleres
+PORT=3000
+DELAY_MS=1000
+```
+
+Luego podemos acceder a esos valores desde JavaScript:
+
+```javascript
+console.log(process.env.APP_NAME);
+console.log(process.env.PORT);
+```
+
+El resultado sería conceptualmente:
+
+```text
+Sistema de Talleres
+3000
+```
+
+### ¿Por qué es útil?
+
+Una de las ventajas es que no necesitamos escribir directamente valores de configuración dentro del código.
+
+En lugar de hacer:
+
+```javascript
+const port = 3000;
+```
+
+podemos utilizar:
+
+```javascript
+const port = process.env.PORT;
+```
+
+Esto permite cambiar la configuración sin modificar directamente el código fuente.
+
+Por ejemplo:
+
+```text
+Desarrollo
+    ↓
+PORT=3000
+
+Producción
+    ↓
+PORT=8080
+```
+
+El código puede permanecer igual y solamente cambia la configuración.
+
+### ¿Por qué está en `dependencies`?
+
+Porque la aplicación necesita acceder a las variables de configuración durante su ejecución.
+
+Por eso `dotenv` se considera una dependencia que participa en el funcionamiento de la aplicación.
+
+---
+
+## 3. Análisis de `ora`
+
+### ¿Para qué sirve?
+
+`ora` permite mostrar un indicador de carga animado en la terminal.
+
+Es especialmente útil cuando una operación tarda cierto tiempo.
+
+Por ejemplo:
+
+```javascript
+import ora from "ora";
+
+const spinner = ora("Cargando talleres...").start();
+
+setTimeout(() => {
+  spinner.succeed("Talleres cargados correctamente");
+}, 2000);
+```
+
+Mientras la operación está ejecutándose, el usuario puede observar un indicador similar a:
+
+```text
+⠋ Cargando talleres...
+```
+
+Y cuando termina:
+
+```text
+✔ Talleres cargados correctamente
+```
+
+### ¿Qué problema resuelve?
+
+Sin un indicador de carga, el usuario podría ejecutar una operación y pensar que el programa se quedó bloqueado:
+
+```text
+$ npm start
+
+Cargando...
+```
+
+Con `ora`, el usuario recibe información visual de que la aplicación sigue trabajando:
+
+```text
+⠋ Consultando talleres...
+```
+
+Esto mejora la experiencia de usuario en la terminal.
+
+### ¿Por qué está en `dependencies`?
+
+Porque `ora` se utiliza durante la ejecución normal de la aplicación para proporcionar información visual al usuario.
+
+---
+
+## 4. Análisis de `nodemon`
+
+### ¿Para qué sirve?
+
+`nodemon` es una herramienta que facilita el desarrollo.
+
+Normalmente, si estamos trabajando con Node.js y modificamos un archivo, tendríamos que detener y volver a iniciar manualmente la aplicación:
+
+```text
+Modificar código
+      ↓
+Detener aplicación
+      ↓
+npm start
+      ↓
+Volver a probar
+```
+
+Con `nodemon`, el proceso es automático:
+
+```text
+Modificar código
+      ↓
+nodemon detecta el cambio
+      ↓
+Reinicia la aplicación
+      ↓
+Podemos volver a probar
+```
+
+Por ejemplo, en `package.json` podemos encontrar un script similar a:
+
+```json
+{
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  }
+}
+```
+
+Entonces podemos ejecutar:
+
+```bash
+npm run dev
+```
+
+Si modificamos `src/index.js`, `nodemon` detectará el cambio y reiniciará automáticamente la aplicación.
+
+### ¿Por qué está en `devDependencies`?
+
+Porque `nodemon` es una herramienta para el programador.
+
+El usuario final normalmente no necesita ejecutar:
+
+```bash
+nodemon src/index.js
+```
+
+Por eso pertenece a:
+
+```text
+devDependencies
+```
+
+Su función principal es facilitar el desarrollo y las pruebas.
+
+---
+
+## 5. Análisis de `prettier`
+
+### ¿Para qué sirve?
+
+`prettier` es una herramienta que permite formatear automáticamente el código.
+
+Por ejemplo, podríamos escribir código con un formato poco organizado:
+
+```javascript
+const usuario={nombre:"Omar",edad:25}
+```
+
+Prettier puede transformarlo en una estructura más legible:
+
+```javascript
+const usuario = {
+  nombre: "Omar",
+  edad: 25,
+};
+```
+
+La funcionalidad del programa no cambia. Lo que cambia es la presentación y organización del código.
+
+### ¿Qué problema resuelve?
+
+Cuando varias personas trabajan en un mismo proyecto, cada una puede utilizar diferentes estilos:
+
+```javascript
+const nombre="Juan";
+```
+
+o:
+
+```javascript
+const nombre = "Juan";
+```
+
+Prettier ayuda a establecer un formato uniforme para todo el proyecto.
+
+### ¿Por qué está en `devDependencies`?
+
+Porque Prettier ayuda durante el desarrollo, pero la aplicación no necesita ejecutar Prettier para funcionar.
+
+Podemos utilizarlo antes de guardar o subir el código al repositorio:
+
+```bash
+npm run format
+```
+
+De esta manera:
+
+```text
+Código escrito
+      ↓
+Prettier
+      ↓
+Código formateado
+      ↓
+Código más limpio y consistente
+```
+
+Por eso pertenece a `devDependencies`.
+
+---
+
+# Análisis específico de `cli-table3`
+
+## ¿Dónde se utiliza?
+
+`cli-table3` se utiliza en el archivo donde el proyecto construye y muestra las tablas de información en la terminal.
+
+Según la estructura analizada, puede encontrarse en `src/services.js` o `src/index.js`, dependiendo de dónde se realice la importación y creación de la tabla.
+
+Un ejemplo de utilización sería:
+
+```javascript
+import Table from "cli-table3";
+
+const table = new Table({
+  head: ["Taller", "Cupos", "Inscritos"],
+});
+```
+
+Después podemos agregar información:
+
+```javascript
+table.push(
+  ["JavaScript", 20, 15],
+  ["Node.js", 25, 10],
+  ["Python", 30, 22]
+);
+```
+
+Y finalmente mostrarla:
+
+```javascript
+console.log(table.toString());
+```
+
+El resultado sería similar a:
+
+```text
+┌────────────┬───────┬───────────┐
+│ Taller     │ Cupos │ Inscritos │
+├────────────┼───────┼───────────┤
+│ JavaScript │ 20    │ 15        │
+│ Node.js    │ 25    │ 10        │
+│ Python     │ 30    │ 22        │
+└────────────┴───────┴───────────┘
+```
+
+---
+
+## ¿Qué problema resuelve dentro del proyecto?
+
+`cli-table3` resuelve el problema de presentar información estructurada de una manera clara dentro de la terminal.
+
+Sin utilizar una tabla, podríamos tener algo como:
+
+```text
+JavaScript - Cupos: 20 - Inscritos: 15
+Node.js - Cupos: 25 - Inscritos: 10
+Python - Cupos: 30 - Inscritos: 22
+```
+
+Aunque esta información es comprensible, puede resultar más difícil de leer cuando aumenta la cantidad de talleres.
+
+Con `cli-table3`, la información se organiza en filas y columnas:
+
+```text
+┌────────────┬───────┬───────────┐
+│ Taller     │ Cupos │ Inscritos │
+├────────────┼───────┼───────────┤
+│ JavaScript │ 20    │ 15        │
+│ Node.js    │ 25    │ 10        │
+│ Python     │ 30    │ 22        │
+└────────────┴───────┴───────────┘
+```
+
+De esta manera, el usuario puede comparar rápidamente los datos.
+
+Por ejemplo, puede observar:
+
+* JavaScript tiene 20 cupos y 15 inscritos.
+* Node.js tiene 25 cupos y 10 inscritos.
+* Python tiene 30 cupos y 22 inscritos.
+
+Por lo tanto, `cli-table3` **no se encarga de almacenar los talleres ni de realizar la lógica de negocio**. Su función principal es presentar los datos de forma organizada en la terminal.
+
+---
+
+# ¿Por qué algunas dependencias están en `dependencies` y otras en `devDependencies`?
+
+La diferencia principal puede entenderse mediante esta comparación:
+
+```text
+                 package.json
+                      │
+          ┌───────────┴───────────┐
+          │                       │
+    dependencies            devDependencies
+          │                       │
+          ↓                       ↓
+ Funcionamiento de          Desarrollo del
+ la aplicación              proyecto
+          │                       │
+          ├─ chalk                ├─ nodemon
+          ├─ dotenv               └─ prettier
+          ├─ ora
+          └─ cli-table3
+```
+
+### `dependencies`
+
+Son paquetes que participan en el funcionamiento de la aplicación.
+
+Ejemplos:
+
+```text
+chalk
+    → Presentación de mensajes
+
+dotenv
+    → Configuración mediante variables de entorno
+
+ora
+    → Indicadores de carga
+
+cli-table3
+    → Tablas en la terminal
+```
+
+### `devDependencies`
+
+Son herramientas utilizadas principalmente por el desarrollador.
+
+Ejemplos:
+
+```text
+nodemon
+    → Reinicia la aplicación automáticamente
+
+prettier
+    → Formatea el código
+```
+
+---
+
+# Conclusión
+
+Después de investigar las dependencias, se puede observar que cada paquete tiene una responsabilidad diferente dentro del proyecto.
+
+`chalk`, `dotenv`, `ora` y `cli-table3` están relacionados con diferentes aspectos de la ejecución de la aplicación: presentación de mensajes, configuración, indicadores de carga y organización de datos en tablas.
+
+Por otro lado, `nodemon` y `prettier` están orientados principalmente al proceso de desarrollo. `nodemon` facilita las pruebas al reiniciar automáticamente la aplicación cuando se detectan cambios, mientras que `prettier` ayuda a mantener un formato uniforme y limpio en el código.
+
+En resumen:
+
+```text
+dependencies
+      ↓
+Necesarias para el funcionamiento
+de la aplicación
+
+chalk
+dotenv
+ora
+cli-table3
+
+
+devDependencies
+      ↓
+Herramientas para facilitar
+el desarrollo
+
+nodemon
+prettier
+```
+
+La correcta separación de estas dependencias permite mantener el proyecto organizado y facilita comprender qué paquetes son necesarios para ejecutar la aplicación y cuáles solamente ayudan al desarrollador durante la creación y mantenimiento del proyecto.
+
