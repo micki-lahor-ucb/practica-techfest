@@ -19,3 +19,7 @@
 ## Tarea 6. Sincronización y asincronía
 * **¿Por qué la aplicación puede continuar realizando esta operación sin representar una espera bloqueante de JavaScript?**
   Porque JavaScript utiliza un modelo asíncrono con un bucle de eventos (*Event Loop*). Cuando usamos promesas y temporizadores (`setTimeout`), la tarea de espera se delega fuera del hilo principal, lo que permite que el sistema espere el tiempo configurado sin congelar ni bloquear la ejecución de la app.
+  ## Tarea 8: Validación de configuración
+- **Prueba con 2:** La aplicación validó correctamente que es un número entero mayor que 0 y utilizó el valor 2.
+- **Prueba con 0:** Al no ser un número estrictamente mayor que 0, la condición lo rechazó y aplicó automáticamente el valor predeterminado de 3.
+- **Prueba con abc:** Al no poder interpretarse como un número válido, el sistema activó la protección y utilizó el valor predeterminado de 3 sin romper la ejecución.
