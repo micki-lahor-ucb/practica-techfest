@@ -13,3 +13,16 @@
 * **Ubicación de datos de talleres:** En `src/data.js`.
 * **Lectura de variables de entorno:** En `src/config.js` mediante la librería `dotenv`.
 * **Operación asíncrona:** En `src/services.js` (función `synchronizeRegistrations` usando `setTimeout`/`Promises`).
+
+## Tarea 3: Dependencias
+
+| Nombre | Tipo | Descripción | Archivo en que se usa | Justificación de categoría |
+| :--- | :--- | :--- | :--- | :--- |
+| **dotenv** | dependencies | Carga variables de entorno desde `.env` hacia `process.env` | `src/config.js` | Necesario en producción para leer configuraciones. |
+| **chalk** | dependencies | Aplica estilos y colores al texto en consola | `src/report.js` | Modifica la interfaz visual de la app activa. |
+| **cli-table3** | dependencies | Genera tablas con formato de texto en la terminal | `src/report.js` | Formatea los datos visibles del reporte final. |
+| **nodemon** | devDependencies | Reinicia la app automáticamente ante cambios de código | Script `npm run dev` | Solo sirve para agilizar el desarrollo local. |
+| **prettier** | devDependencies | Formatea y limpia el estilo de código | Script de formato | No afecta la lógica de producción. |
+
+### Uso específico de `cli-table3`:
+Se utiliza en `src/report.js`. Resuelve el problema de alinear y tabular manualmente los objetos de los talleres, mostrándolos en bordes bien dibujados y columnas estructuradas en la terminal.
