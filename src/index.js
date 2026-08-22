@@ -1,3 +1,4 @@
+import { printEventSummary } from './summary.js';
 import 'dotenv/config';
 import chalk from 'chalk';
 
@@ -25,3 +26,4 @@ console.log(
     `Talleres procesados: ${synchronized.length}. Los datos fueron simulados para la práctica.`,
   ),
 );
+printEventSummary(synchronized);
