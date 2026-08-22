@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import chalk from 'chalk';
+import { printEventSummary } from './summary.js';
 
 import { config } from './config.js';
 import { workshops } from './data.js';
@@ -26,3 +27,4 @@ console.log(
     `Talleres procesados: ${synchronized.length}. Los datos fueron simulados para la práctica.`,
   ),
 );
+printEventSummary(synchronized);
