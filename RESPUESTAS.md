@@ -90,8 +90,8 @@ Al cambiar MAX\_WORKSHOPS de 3 a 2, la aplicación pasó de mostrar 3 talleres a
 Esto demuestra que la configuración (variables de entorno) y la lógica del programa están separadas: se puede cambiar el comportamiento de la app simplemente editando el .env, sin necesidad de tocar el código fuente. Esto es útil porque permite usar la misma aplicación en distintos entornos (desarrollo, producción, etc.) solo cambiando la configuración.
 
 
-## Tarea 6 - Configurar el tiempo de sincronización
 
+\##tarea 6 - configurar el tiempo de sincronización
 
 
 Probé la aplicación con SYNC\_DELAY=1200 y SYNC\_DELAY=3000. Con 3000 la pausa antes de "Sincronización completada" fue claramente más larga y notoria.
@@ -99,4 +99,22 @@ Probé la aplicación con SYNC\_DELAY=1200 y SYNC\_DELAY=3000. Con 3000 la pausa
 
 
 La función synchronizeRegistrations usa await wait(delay), donde wait() devuelve una Promise que se resuelve con setTimeout. Aunque parece una espera, no es una espera bloqueante como un bucle que consume CPU. El await solo pausa la ejecución de esa función asíncrona en particular, cediendo el control al event loop de Node.js mientras tanto. Esto significa que, si hubiera otras tareas u operaciones esperando ejecutarse, Node podría atenderlas durante esa espera, en vez de quedar completamente congelado. Es la diferencia entre una espera "activa" (bloqueante) y una espera "pasiva" basada en el event loop (no bloqueante).
+
+
+
+\## Tarea 8 - Validar la configuración
+
+
+
+Se agregó una función parseMaxWorkshops en config.js que valida MAX\_WORKSHOPS antes de usarlo: debe ser un número entero mayor que 0, si no, se usa 3 como valor por defecto. Toda la validación quedó centralizada en config.js, sin duplicar lógica en index.js.
+
+
+
+Pruebas realizadas:
+
+\- MAX\_WORKSHOPS=2 → Válido. La app mostró "Límite de talleres configurado: 2" y solo 2 talleres en la tabla.
+
+\- MAX\_WORKSHOPS=0 → Inválido (no es mayor que 0). La app usó el valor por defecto y mostró "Límite de talleres configurado: 3".
+
+\- MAX\_WORKSHOPS=abc → Inválido (no es un número). La app usó el valor por defecto y mostró "Límite de talleres configurado: 3".
 
