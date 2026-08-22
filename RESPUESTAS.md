@@ -38,3 +38,6 @@ services.js: Gestiona las operaciones simuladas y asíncronas de sincronización
 
 ### cli-table3:
 Se utiliza en report.js dentro de la función printWorkshopReport y el problema que resuelve es que automatiza el formato para presentar los datos de una forma mas legible evitando formatear los espacios manualmente
+
+## Tarea 4. Código vs Configuración
+Este ejercicio demuestra que al modificar EVENT_NAME o MAX_WORKSHOPS en el archivo .env, el comportamiento y las salidas del sistema cambian sin necesidad de alterar la logica del sistema lo que permite que la misma base de código se ejecute en diferentes entornos solo cambiando sus variables de entorno.
