@@ -1063,3 +1063,24 @@ prettier
 
 La correcta separación de estas dependencias permite mantener el proyecto organizado y facilita comprender qué paquetes son necesarios para ejecutar la aplicación y cuáles solamente ayudan al desarrollador durante la creación y mantenimiento del proyecto.
 
+## Tarea 4: Configuración del entorno
+
+### ¿Qué demuestra este ejercicio sobre la diferencia entre código y configuración?
+
+Este ejercicio demuestra que **el código y la configuración cumplen funciones diferentes dentro de una aplicación**. El código contiene la lógica que indica cómo debe funcionar el programa, mientras que la configuración contiene valores que pueden cambiar dependiendo del entorno o de las necesidades de la aplicación.
+
+Por ejemplo, imaginemos que una aplicación tiene un límite de **10 talleres** disponibles. Si este valor estuviera escrito directamente en el código, sería necesario modificar el archivo fuente cada vez que se quisiera cambiar el límite. En cambio, si el valor se almacena en un archivo `.env`, por ejemplo:
+
+```env
+MAX_TALLERES=10
+```
+
+el programa puede obtener ese valor mediante `process.env.MAX_TALLERES`. De esta manera, si posteriormente se necesita aumentar el límite a 20 talleres, solamente se modifica la configuración:
+
+```env
+MAX_TALLERES=20
+```
+
+sin necesidad de modificar la lógica principal del programa.
+
+## Por lo tanto, este ejercicio demuestra que **separar la configuración del código permite desarrollar aplicaciones más reutilizables, mantenibles y fáciles de adaptar**. La misma aplicación puede utilizar diferentes configuraciones para distintos entornos, como desarrollo, pruebas o producción, sin tener que cambiar su código fuente.
