@@ -45,3 +45,9 @@ Este ejercicio demuestra que al modificar EVENT_NAME o MAX_WORKSHOPS en el archi
 ## Tarea 6. Convertir el tiempo de sincronización en configuración
 
 Node usa un único hilo junto con el event loop y al usar setTimeout con una Promise, el tiempo de espera no congela el hilo principal y mas bien que se delega a las APIs del sistema, asó el proceso queda libre para atender otras tareas y al terminar el tiempo de SYNC_DELAY, la promesa se resuelve en la cola de tareas sin causar un bloqueo síncrono
+
+## Tarea 8. Reto final: validar la configuración
+
+Con MAX_WORKSHOPS=2 la aplicación procesó y mostró exactamente 2 talleresporque es un numero entero y mayor a 0
+Con MAX_WORKSHOPS=0 la aplicación no cumplió la condición de ser mayor a 0 y aplica el valor por defecto de 3 talleres.
+Con MAX_WORKSHOPS=abc ocurre "parseInt" y genera "NaN" por lo que la validación falló y aplicó el valor por defecto de 3 talleres.
