@@ -4,9 +4,8 @@ export function wait(milliseconds) {
   });
 }
 
-export async function synchronizeRegistrations(items) {
-  await wait(1200);
-
+export async function synchronizeRegistrations(items, delayMs) {
+  await wait(delayMs);
   return items.map((workshop) => ({
     ...workshop,
     availableSeats: workshop.seats - workshop.registered,

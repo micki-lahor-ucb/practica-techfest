@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import chalk from 'chalk';
-
+import { printEventSummary } from './summary.js';
 import { config } from './config.js';
 import { workshops } from './data.js';
 import { printWorkshopReport } from './report.js';
@@ -17,7 +17,7 @@ printWorkshopReport(workshops.slice(0, config.maxWorkshops));
 
 console.log(chalk.bold('\nSincronizando inscripciones...'));
 
-const synchronized = await synchronizeRegistrations(workshops);
+const synchronized = await synchronizeRegistrations(workshops, config.syncDelayMs);
 console.log(`Estudiante: ${chalk.yellow(config.studentName)}`);
 console.log(chalk.green('✓ Sincronización completada.'));
 console.log(
@@ -26,3 +26,4 @@ console.log(
   ),
   
 );
+printEventSummary(synchronized);
