@@ -18,10 +18,11 @@ printWorkshopReport(workshops.slice(0, config.maxWorkshops));
 console.log(chalk.bold('\nSincronizando inscripciones...'));
 
 const synchronized = await synchronizeRegistrations(workshops);
-
+console.log(`Estudiante: ${chalk.yellow(config.studentName)}`);
 console.log(chalk.green('✓ Sincronización completada.'));
 console.log(
   chalk.gray(
     `Talleres procesados: ${synchronized.length}. Los datos fueron simulados para la práctica.`,
   ),
+  
 );
