@@ -1,3 +1,4 @@
+import { printEventSummary } from './summary.js';
 import 'dotenv/config';
 import chalk from 'chalk';
 
@@ -9,6 +10,7 @@ import { synchronizeRegistrations } from './services.js';
 console.log(chalk.bold.cyan(`\n${config.appName}`));
 console.log(chalk.gray('----------------------------------------'));
 console.log(`Evento: ${chalk.yellow(config.eventName)}`);
+console.log(`Estudiante: ${chalk.yellow(config.studentName)}`);
 console.log(`Entorno: ${chalk.yellow(config.environment)}`);
 console.log(`Límite de talleres configurado: ${chalk.yellow(config.maxWorkshops)}`);
 
@@ -17,11 +19,11 @@ printWorkshopReport(workshops.slice(0, config.maxWorkshops));
 
 console.log(chalk.bold('\nSincronizando inscripciones...'));
 
-const synchronized = await synchronizeRegistrations(workshops);
-
+const synchronized = await synchronizeRegistrations(workshops, config.syncDelay);
 console.log(chalk.green('✓ Sincronización completada.'));
 console.log(
   chalk.gray(
     `Talleres procesados: ${synchronized.length}. Los datos fueron simulados para la práctica.`,
   ),
 );
+printEventSummary(synchronized);
